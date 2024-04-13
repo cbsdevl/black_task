@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    .black{
+        margin-top: -100px;
+        height: 600px;
+        width: 550px;
+    }
+    #scan-btn{
+        height: 40px;
+    }
+    .body{
+        background-color: #333;
+        color: white;
+        font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    }
+</style>
+<body>
+    <center>
+        <div class="body">
+    <h1>QR code scanner_app</h1>
+<video id="preview" class="black"></video>
+<div id="result"></div>
+<button id="scan-btn">Scan QR Code</button>
+<br>
+<h3 style="color: white; margin-left: 1100px; ">copyrigt©2024_BLACK</h3>
+</div>
+<script>
+    const scanBtn = document.getElementById('scan-btn');
+const result = document.getElementById('result');
+const preview = document.getElementById('preview');
+
+navigator.mediaDevices.getUserMedia({ video: { facingMode: 'environment' } })
+  .then(stream => {
+    preview.srcObject = stream;
+    preview.play();
+    const image = new Image();
+    image.src = preview.srcObject;
+    scan(image);
+  });
+
+scanBtn.addEventListener('click', () => {
+  const image = new Image();
+  image.src = preview.srcObject;
+  scan(image);
+});
+
+function scan(image) {
+  const code = jsQR(image, 0, 0);
+  if (code) {
+    result.textContent = code.data;
+  }
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QRcode system</title>
+</head>
+<script src="https://cdn.rawgit.com/davidshimjs/qrcodejs/gh-pages/qrcode.min.js"></script>
+<style>
+        .body{
+        background-color: #333;
+        color: white;
+        font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    }
+.qrcont{
+    background-color: white;
+    margin-left: 700px;
+    margin-top: -200px;
+    height: 400px;
+    width: 500px;
+}
+#qr-form{
+    margin-top: 50px;
+    margin-right: 400px;
+    border: 2px solid white;
+    width: 300px;
+    height: 200px;
+    border-radius: 8px;
+}
+#url-input{
+    width: 200px;
+    border-radius: 8px;
+    height: 30px;
+}
+#submit{
+    width: 200px;
+    height: 30px;
+    border-radius: 8px;
+}
+</style>
+<body>
+    <center>
+        <div class="body">
+            <h1>QR code generator_app</h1>
+    <form id="qr-form">
+        <h3>Enter the bus details</h3>
+        <input type="text" id="url-input" placeholder="Enter Bus Prake"><br><br>
+        <button type="submit" id="submit">Generate QR Code</button>
+    </form>
+    <div class="qrcont">
+        <div id="qrcode"><br><br><br></div>
+    </div>
+    <h3 style="color: white; margin-left: 1100px; margin-top: 130px; ">copyrigt©2024_BLACK</h3>
+</div>
+
+<script>
+const form = document.getElementById('qr-form');
+const urlInput = document.getElementById('url-input');
+
+form.addEventListener('submit', (e) => {
+    e.preventDefault(); 
+
+    const content = urlInput.value; 
+
+    const qrCodeDiv = document.getElementById('qrcode'); 
+    const options = {
+        text: content,
+        width: 256,
+        height: 256,
+        colorDark: '#000000', 
+        colorLight: '#ffffff', 
+        correctLevel: QRCode.CorrectLevel.H, 
+    };
+
+    new QRCode(qrCodeDiv, options);
+});
+
+</script>
+</body>
+</html>
